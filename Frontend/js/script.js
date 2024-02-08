@@ -19,6 +19,9 @@ function startVideo() {
 video.addEventListener("play", () => {
     const canvas = faceapi.createCanvasFromMedia(video);
     document.getElementById("video-container").append(canvas);
+
+    
+    
     const displaySize = { width: video.width, height: video.height };
     faceapi.matchDimensions(canvas, displaySize);
     let band = true;
@@ -56,6 +59,7 @@ video.addEventListener("play", () => {
                 age: parseInt(parseFloat(age)),
                 emotion: emotion,
             };
+            console.log(data);
 
             if (data && band === true) {
                 document.getElementById("check-person").hidden = false;
@@ -88,8 +92,7 @@ function setInformation(data) {
     document.getElementById("information-person").hidden = false;
     ageInput.value = data.age;
     if (data.gender === "male") {
-        genderSelect.value = "masculino";
-    } else if (data.gender === "female") {
+        genderSelect.value = "masculino";    } else if (data.gender === "female") {
         genderSelect.value = "femenino";
     }
     emotionInput.value = data.emotion;
