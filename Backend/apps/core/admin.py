@@ -7,8 +7,8 @@ from .models import Product
 @admin.register(Product)
 class ProductAdmin(admin.ModelAdmin):
     list_display = (
-    'name_product', 'image_tag', 'price_product', 'quantity_product', 'gender_product', 'age_min', 'age_max',
-    'emotion_product')
+        'name_product', 'image_tag', 'price_product', 'stock', 'gender_product', 'age_min', 'age_max',
+        'emotion_product')
     search_fields = ('name_product',)
     list_filter = ('gender_product', 'emotion_product')
     readonly_fields = ('image_tag',)
