@@ -4,5 +4,5 @@ from . import views
 app_name = 'core'
 
 urlpatterns = [
-    path('', views.index, name='index')
+    path('recibir-datos/', views.recibir_datos, name='recibir-datos')
 ]
