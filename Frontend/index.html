@@ -5,7 +5,7 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta http-equiv="X-UA-Compatible" content="ie=edge">
-	<title>Game - Face</title>
+	<title>Publicidad para ti</title>
 
 	<link href="./css/style.css" rel="stylesheet">
 	<link href="./css/style_game.css" rel="stylesheet">
@@ -81,6 +81,35 @@
 					transform: rotate(360deg);
 				}
 			}
+
+			.card-product-style{
+				display: flex;
+				justify-content: space-between;
+				align-items: center;
+				padding: 10px;
+			}
+
+
+			.producto {
+				border: 1px solid #000;
+				border-radius: 10px; /* Esquinas redondeadas */
+				padding: 10px;
+				width: 100px; /* Ancho del cuadro de la imagen */
+				height: 100px; /* Altura del cuadro de la imagen */
+				display: flex;
+				justify-content: center;
+				align-items: center;
+				margin: 5px;
+			}
+
+			.producto img {
+				max-width: 100%;
+				max-height: 100%;
+				}
+
+			.producto-info {
+				text-align: center;
+				}
 	
 		</style>
 
@@ -92,48 +121,65 @@
 			<div class="col-md-12 text-center mt-4">
 				<div class="phone-frame">
 					<div class="screen">
+						<div id="primera-pantalla">
+							<div id="welcome-message" class="mt-5">
+								<h1>Publicidad Para Tí</h1>
+								<p>Bienvenido a tu experiencia de compra personalizada</p>
+							</div>
+							<div class="col-10" id="video-container" hidden>
+								<video id="video" width="270" height="210" autoplay muted></video>
+							</div>
+							<div id="instruction-message" class="centered-message" hidden>
+								<!-- Segundo mensaje oculto al principio -->
+								<div id="loader-spin" class="loader" hidden></div> <!-- Animación de carga -->
+								<div id="check-person" hidden>
+									<i class="fa-solid fa-user-check fa-2xl mb-2" style="color: #47b300;"></i>
+								</div>
+	
+								<h3 id="detected-message">Párate frente a la pantalla para comenzar</h3>
+								<div id="information-person" class="col-12 mt-3" hidden>
+									<div class="row">
+										<div class="col-4">
+											<label for="age-id">Edad:</label>
+											<input id="age-id" type="number">
+										</div>
+										<div class="col-4">
+											<label for="gender-select">Género:</label>
+											<select id="gender-select">
+												<option value="masculino">Masculino</option>
+												<option value="femenino">Femenino</option>
+											</select>
+										</div>
+										<div class="col-4">
+											<label for="emotion-info">Emoción:</label>
+											<input id="emotion-info" type="text" readonly>
+										</div>
+									</div>
+									<div class="row mt-3">
+										<button id="button-send-data" class="btn btn-success">Enviar Datos</button>
+									</div>
+	
+								</div>
+	
+							</div>
+						</div>
+
+						<div id="segunda-pantalla" hidden>
+							SEGUNDA PANTALLA
+							<div class="card-product-style" id="productos-superior-container">
+								PRODUCTOS SUPERIORES
+								<!-- Aquí se insertarán los productos -->
+							</div>
+							
+							<div class="card-product-style" id="productos-inferior-container">
+								PRODUCTOS INFERIORES
+								<!-- Aquí se insertarán los productos -->
+							</div>
+						</div>
 						<!-- Contenido de la pantalla del celular -->
-						<div id="welcome-message" class="mt-5">
-							<h1>Publicidad Para Tí</h1>
-							<p>Bienvenido a tu experiencia de compra personalizada</p>
-						</div>
-
-						<div class="col-10" id="video-container" hidden>
-							<video id="video" width="270" height="210" autoplay muted></video>
-						</div>
-						<div id="instruction-message" class="centered-message" hidden>
-							<!-- Segundo mensaje oculto al principio -->
-							<div id="loader-spin" class="loader" hidden></div> <!-- Animación de carga -->
-							<div id="check-person" hidden>
-								<i class="fa-solid fa-user-check fa-2xl mb-2" style="color: #47b300;"></i>
-							</div>
-
-							<h3 id="detected-message">Párate frente a la pantalla para comenzar</h3>
-							<div id="information-person" class="col-12 mt-3" hidden>
-								<div class="row">
-									<div class="col-4">
-										<label for="age-id">Edad:</label>
-										<input id="age-id" type="number">
-									</div>
-									<div class="col-4">
-										<label for="gender-select">Género:</label>
-										<select id="gender-select">
-											<option value="masculino">Masculino</option>
-											<option value="femenino">Femenino</option>
-										</select>
-									</div>
-									<div class="col-4">
-										<label for="emotion-info">Emoción:</label>
-										<input id="emotion-info" type="text" readonly>
-									</div>
-								</div>
-								<div class="row mt-3">
-									<button id="button-send-data" class="btn btn-success">Enviar Datos</button>
-								</div>
-
-							</div>
-
-						</div>
+						
+						
+						
 					</div>
 				</div>
 			</div>

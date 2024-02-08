@@ -57,8 +57,7 @@ video.addEventListener("play", () => {
                 emotion: emotion,
             };
 
-            console.log(data);
-            console.log("******************");
+
 
             if (data && band === true) {
                 document.getElementById("check-person").hidden = false;
@@ -98,6 +97,45 @@ function setInformation(data) {
     emotionInput.value = data.emotion;
 }
 
+
+function displayProducts(productos) {
+    const main_address='http://localhost:8000';
+    const productosUpContainer = document.getElementById('productos-superior-container');
+    const productosDownContainer = document.getElementById('productos-inferior-container');
+    productos.products.forEach(producto => {
+        const productoUpDiv = document.createElement('div');
+        const productoDownDiv = document.createElement('div');
+        productoUpDiv.classList.add('producto');
+        productoDownDiv.classList.add('producto');
+        const img = document.createElement('img');
+        img.src = main_address+producto.image_url;
+        img.alt = producto.name_product;
+
+        const infoDiv = document.createElement('div');
+        infoDiv.classList.add('producto-info');
+        infoDiv.innerHTML = `<h3>${producto.name_product}</h3>
+                           <p>$${producto.price_product}</p>
+                           <p>Stock: ${producto.stock}</p>`;
+
+        if (producto.type_product === "up") {
+            productoUpDiv.appendChild(img);
+            productoUpDiv.appendChild(infoDiv);
+        }
+        else {
+            productoDownDiv.appendChild(img);
+            productoDownDiv.appendChild(infoDiv);
+        }
+
+        productosUpContainer.appendChild(productoUpDiv);
+        productosDownContainer.appendChild(productoDownDiv);
+    });
+}
+
+// Asegúrate de llamar a esta función cuando quieras que los productos se muestren
+
+
+
+
 function sendData() {
     // Obtén los datos a enviar al backend
     let data = {
@@ -121,11 +159,16 @@ function sendData() {
             throw new Error("Error al enviar datos al servidor.");
         })
         .then((data) => {
+            document.getElementById("primera-pantalla").hidden = true;
+            document.getElementById("segunda-pantalla").hidden = false;
             console.log(data);
+            displayProducts(data);
+
         })
         .catch((error) => {
             console.error("Error:", error);
         });
+
 }
 
 const boton = document.getElementById("button-send-data");
