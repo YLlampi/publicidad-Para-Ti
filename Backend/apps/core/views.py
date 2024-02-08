@@ -26,7 +26,7 @@ def recibir_datos(request):
             )
 
             products = products.filter(age_min__lte=age, age_max__gte=age)
-            print(products)
+
             data = [{
                 'id': product.id,
                 'name_product': product.name_product,
@@ -53,11 +53,12 @@ def get_product(request):
             product = Product.objects.get(id=id_product)
 
             data = {
+                'id': product.id,
                 'name_product': product.name_product,
                 'price_product': f'{product.price_product}',
                 'type_product': f'{product.type_product}',
                 'stock': product.stock,
-                'image_url': product.image_product.url
+                'image_url': f'http://localhost:8000{product.image_product.url}'
             }
 
             return JsonResponse({'product': data})
