@@ -13,7 +13,7 @@
 		integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
 	<link rel="stylesheet"
 		href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
-		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
 		<style>
 
@@ -88,27 +88,27 @@
 
 <body>
 	<div class="container">
-        <div class="row">
-            <div class="col-md-12 text-center mt-4">
-                <div class="phone-frame">
-                    <div class="screen">
-                        <!-- Contenido de la pantalla del celular -->
-                        <div id="welcome-message" class="mt-5">
-                            <h1>Publicidad Para Tí</h1>
-                            <p>Bienvenido a tu experiencia de compra personalizada</p>
-                        </div>
+		<div class="row">
+			<div class="col-md-12 text-center mt-4">
+				<div class="phone-frame">
+					<div class="screen">
+						<!-- Contenido de la pantalla del celular -->
+						<div id="welcome-message" class="mt-5">
+							<h1>Publicidad Para Tí</h1>
+							<p>Bienvenido a tu experiencia de compra personalizada</p>
+						</div>
 
-                        <div class="col-10" id="video-container" hidden>
-                            <video id="video" width="270" height="210" autoplay muted></video>
-                        </div>
+						<div class="col-10" id="video-container" hidden>
+							<video id="video" width="270" height="210" autoplay muted></video>
+						</div>
 						<div id="instruction-message" class="centered-message" hidden>
-                            <!-- Segundo mensaje oculto al principio -->
-                            <div id="loader-spin" class="loader" hidden></div> <!-- Animación de carga -->
+							<!-- Segundo mensaje oculto al principio -->
+							<div id="loader-spin" class="loader" hidden></div> <!-- Animación de carga -->
 							<div id="check-person" hidden>
 								<i class="fa-solid fa-user-check fa-2xl mb-2" style="color: #47b300;"></i>
 							</div>
-							
-                            <h3 id="detected-message">Párate frente a la pantalla para comenzar</h3>
+
+							<h3 id="detected-message">Párate frente a la pantalla para comenzar</h3>
 							<div id="information-person" class="col-12 mt-3" hidden>
 								<div class="row">
 									<div class="col-4">
@@ -128,17 +128,17 @@
 									</div>
 								</div>
 								<div class="row mt-3">
-									<button type="button" class="btn btn-success">Enviar Datos</button>
+									<button id="button-send-data" class="btn btn-success">Enviar Datos</button>
 								</div>
-								
+
 							</div>
-							
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
 
 
 	<script defer src="./js/face-api.min.js"></script>
@@ -150,18 +150,18 @@
 	<script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
 
 	<script>
-        // Función para mostrar el segundo mensaje después de dos segundos
+		// Función para mostrar el segundo mensaje después de dos segundos
 
-        setTimeout(function () {
-            document.getElementById('instruction-message').hidden = false;
-        }, 1000);
+		setTimeout(function () {
+			document.getElementById('instruction-message').hidden = false;
+		}, 1000);
 
-        setTimeout(function () {
-            document.getElementById('loader-spin').hidden = false;
-            document.getElementById('detected-message').innerText = "Escaneando Rostro...!";
-            document.getElementById('video-container').hidden = false;
-        }, 4000);
-    </script>
+		setTimeout(function () {
+			document.getElementById('loader-spin').hidden = false;
+			document.getElementById('detected-message').innerText = "Escaneando Rostro...!";
+			document.getElementById('video-container').hidden = false;
+		}, 4000);
+	</script>
 
 
 </body>

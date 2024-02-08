@@ -74,27 +74,6 @@ video.addEventListener("play", () => {
                     band_2 = false;
                 }
             }, 2000);
-
-            // Enviar los datos al backend
-            /* fetch("http://localhost:8000/", {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                },
-                body: JSON.stringify(data),
-            })
-                .then((response) => {
-                    if (response.ok) {
-                        return response.json();
-                    }
-                    throw new Error("Error al enviar datos al servidor.");
-                })
-                .then((data) => {
-                    console.log(data);
-                })
-                .catch((error) => {
-                    console.error("Error:", error);
-                }); */
         });
     }, 100);
 
@@ -118,3 +97,36 @@ function setInformation(data) {
     }
     emotionInput.value = data.emotion;
 }
+
+function sendData() {
+    // Obtén los datos a enviar al backend
+    let data = {
+        age: document.getElementById("age-id").value,
+        gender: document.getElementById("gender-select").value,
+        emotion: document.getElementById("emotion-info").value,
+    };
+
+    // Enviar los datos al backend
+    fetch("http://localhost:8000/api/recibir-datos/", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data),
+    })
+        .then((response) => {
+            if (response.ok) {
+                return response.json();
+            }
+            throw new Error("Error al enviar datos al servidor.");
+        })
+        .then((data) => {
+            console.log(data);
+        })
+        .catch((error) => {
+            console.error("Error:", error);
+        });
+}
+
+const boton = document.getElementById("button-send-data");
+boton.addEventListener("click", sendData);
