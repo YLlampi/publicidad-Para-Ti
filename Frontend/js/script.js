@@ -20,8 +20,8 @@ video.addEventListener("play", () => {
     const canvas = faceapi.createCanvasFromMedia(video);
     document.getElementById("video-container").append(canvas);
 
-    
-    
+
+
     const displaySize = { width: video.width, height: video.height };
     faceapi.matchDimensions(canvas, displaySize);
     let band = true;
@@ -84,56 +84,82 @@ function setInformation(data) {
     document.getElementById("information-person").hidden = false;
     ageInput.value = data.age;
     if (data.gender === "male") {
-        genderSelect.value = "masculino";    } else if (data.gender === "female") {
+        genderSelect.value = "masculino";
+    } else if (data.gender === "female") {
         genderSelect.value = "femenino";
     }
     emotionInput.value = data.emotion;
+}
+function get_product_detail(id) {
+    fetch("http://localhost:8000/api/get-product/", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ id: id }),
+    })
+        .then((response) => {
+            if (response.ok) {
+                return response.json();
+            }
+            throw new Error("Error al enviar datos al servidor.");
+        })
+        .then((data) => {
+            document.getElementById("primera-pantalla").hidden = true;
+            document.getElementById("segunda-pantalla").hidden = true;
+            document.getElementById("tercera-pantalla").hidden = false;
+            console.log('product detail '+data.name_product);
+            
+        })
+        .catch((error) => {
+            console.error("Error:", error);
+        });
 }
 
 function displayProducts(productos) {
     const productosUpContainer = document.getElementById("productos-superior-container");
     const productosDownContainer = document.getElementById("productos-inferior-container");
-    
+
     productos.products.forEach((producto) => {
         // Contenedor para cada fila de producto
         const productoRowDiv = document.createElement("div");
         productoRowDiv.classList.add("producto-row");
-        
+
         // Botón de navegación izquierda
         const navButtonLeft = document.createElement("div");
         navButtonLeft.classList.add("nav-button");
         navButtonLeft.textContent = "◀";
-        
+
         // Botón de navegación derecha
         const navButtonRight = document.createElement("div");
         navButtonRight.classList.add("nav-button");
         navButtonRight.textContent = "▶";
-        
+
         // Contenedor del producto
         const productoDiv = document.createElement("div");
         productoDiv.classList.add("producto");
-        
+
         // Nombre del producto
         const nameDiv = document.createElement("div");
         nameDiv.classList.add("producto-name");
         nameDiv.textContent = producto.name_product;
-        
+
         // Imagen del producto
         const img = document.createElement("img");
         img.src = producto.image_url;
         img.alt = producto.name_product;
-        
-        
-        
+        img.onclick = function() {
+            get_product_detail(producto.id);
+        };
         // Agregamos los elementos al contenedor del producto
         productoDiv.appendChild(nameDiv);
         productoDiv.appendChild(img);
-        
+
         // Agregamos los botones y el producto al contenedor de la fila
         productoRowDiv.appendChild(navButtonLeft);
         productoRowDiv.appendChild(productoDiv);
         productoRowDiv.appendChild(navButtonRight);
-        
+
         // Determinamos en qué contenedor debe ir el producto basado en su tipo
         if (producto.type_product === "up") {
             productosUpContainer.appendChild(productoRowDiv);
@@ -178,5 +204,8 @@ function sendData() {
         });
 }
 
-const boton = document.getElementById("button-send-data");
-boton.addEventListener("click", sendData);
+const boton_send_data = document.getElementById("button-send-data");
+boton_send_data.addEventListener("click", sendData);
+
+const boton_get_detail_product = document.getElementById("button-send-data");
+boton_send_data.addEventListener("click", sendData);
