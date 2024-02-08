@@ -16,6 +16,9 @@
 		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
 		<style>
+
+			
+
 			.phone-frame {
 				width: 500px;
 				height: 90vh; /* Altura del 90% de la ventana */
@@ -28,7 +31,16 @@
 				align-items: center; /* Centrar verticalmente */
 				justify-content: center; /* Centrar horizontalmente */
 			}
-	
+
+			@keyframes wave-animation {
+				0% {
+					background-position-x: 0;
+				}
+				100% {
+					background-position-x: 1000px;
+				}
+			}
+
 			.screen {
 				width: calc(100% - 12px); /* Restar el grosor del borde */
 				height: calc(100% - 12px); /* Restar el grosor del borde */
@@ -37,6 +49,11 @@
 				top: 6px; /* Mover hacia abajo para compensar el grosor del borde */
 				left: 6px; /* Mover hacia la derecha para compensar el grosor del borde */
 				border-radius: 10px; /* Bordes redondeados */
+
+				animation: wave-animation 30s linear infinite;
+				background-image: url('https://static.vecteezy.com/system/resources/previews/012/465/494/non_2x/soft-wave-background-with-ice-cream-color-and-simple-lines-suitable-for-banner-flyer-web-desktop-etc-vector.jpg'); /* Asegúrate de tener una imagen que se repita horizontalmente */
+				background-size: cover;
+				background-repeat: repeat-x;
 			
 			}
 	
