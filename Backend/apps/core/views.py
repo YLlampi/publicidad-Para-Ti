@@ -1,6 +1,8 @@
+import json
+
 from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
-import json
+from .models import Product
 
 
 @csrf_exempt
@@ -8,10 +10,32 @@ def recibir_datos(request):
     if request.method == 'POST':
         try:
             datos_recibidos = json.loads(request.body)
-            print("*************************************")
-            print(datos_recibidos)
-            return JsonResponse({'mensaje': 'Datos recibidos correctamente.'})
-        except json.JSONDecodeError:
-            return JsonResponse({'error': 'Los datos no están en formato JSON válido.'}, status=400)
+
+            age = int(datos_recibidos['age'])
+            gender = datos_recibidos['gender']
+            emotion = datos_recibidos['emotion']
+
+            if gender == 'masculino':
+                gender = 'M'
+            else:
+                gender = 'F'
+
+            products = Product.objects.filter(
+                gender_product=gender,
+                # emotion_product=emotion
+            )
+
+            products = products.filter(age_min__lte=age, age_max__gte=age)
+            print(products)
+            data = [{
+                'name_product': product.name_product,
+                'price_product': str(product.price_product),
+                'stock': product.quantity_product,
+                'image_url': product.image_product.url
+            }for product in products]
+
+            return JsonResponse({'products': data})
+        except (KeyError, json.JSONDecodeError):
+            return JsonResponse({'error': 'Los datos recibidos no son válidos.'}, status=400)
     else:
         return JsonResponse({'error': 'Método no permitido.'}, status=405)
