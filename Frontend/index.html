@@ -8,7 +8,6 @@
 	<title>Publicidad para ti</title>
 
 	<link href="./css/style.css" rel="stylesheet">
-	<link href="./css/style_game.css" rel="stylesheet">
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
 		integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
 	<link rel="stylesheet"
@@ -16,9 +15,6 @@
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
 		<style>
-
-			
-
 			.phone-frame {
 				width: 500px;
 				height: 90vh; /* Altura del 90% de la ventana */
@@ -126,39 +122,45 @@
 								<h1>Publicidad Para Tí</h1>
 								<p>Bienvenido a tu experiencia de compra personalizada</p>
 							</div>
-							<div class="col-10" id="video-container" hidden>
+							<div class="col-12" id="video-container" hidden>
 								<video id="video" width="270" height="210" autoplay muted></video>
 							</div>
-							<div id="instruction-message" class="centered-message" hidden>
-								<!-- Segundo mensaje oculto al principio -->
-								<div id="loader-spin" class="loader" hidden></div> <!-- Animación de carga -->
+							<div id="instruction-message" class="centered-message text-center col-12" hidden>
+								<div class="text-center align-items-center">
+								<div id="loader-spin" class="loader" hidden></div>
+								</div>
+    							
+
 								<div id="check-person" hidden>
 									<i class="fa-solid fa-user-check fa-2xl mb-2" style="color: #47b300;"></i>
 								</div>
-	
+
 								<h3 id="detected-message">Párate frente a la pantalla para comenzar</h3>
 								<div id="information-person" class="col-12 mt-3" hidden>
-									<div class="row">
-										<div class="col-4">
+									<div class="row col-12">
+										<div class="col-4" >
 											<label for="age-id">Edad:</label>
-											<input id="age-id" type="number">
+											<input id="age-id" class="input-group" type="number">
 										</div>
 										<div class="col-4">
 											<label for="gender-select">Género:</label>
-											<select id="gender-select">
+											<select id="gender-select" class="input-group">
 												<option value="masculino">Masculino</option>
 												<option value="femenino">Femenino</option>
 											</select>
 										</div>
+										
 										<div class="col-4">
 											<label for="emotion-info">Emoción:</label>
-											<input id="emotion-info" type="text" readonly>
+											<input id="emotion-info" class="input-group" type="text" readonly>
 										</div>
 									</div>
-									<div class="row mt-3">
+									<div>
+										<p>Modificar Valores si desea</p>
+									</div>
+									<div class="row m-3">
 										<button id="button-send-data" class="btn btn-success">Enviar Datos</button>
 									</div>
-	
 								</div>
 	
 							</div>
@@ -176,7 +178,6 @@
 								<!-- Aquí se insertarán los productos -->
 							</div>
 						</div>
-						<!-- Contenido de la pantalla del celular -->
 						
 						
 						

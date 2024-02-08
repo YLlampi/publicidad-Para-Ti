@@ -57,8 +57,6 @@ video.addEventListener("play", () => {
                 emotion: emotion,
             };
 
-
-
             if (data && band === true) {
                 document.getElementById("check-person").hidden = false;
                 document.getElementById("loader-spin").hidden = true;
@@ -97,22 +95,24 @@ function setInformation(data) {
     emotionInput.value = data.emotion;
 }
 
-
 function displayProducts(productos) {
-    const main_address='http://localhost:8000';
-    const productosUpContainer = document.getElementById('productos-superior-container');
-    const productosDownContainer = document.getElementById('productos-inferior-container');
-    productos.products.forEach(producto => {
-        const productoUpDiv = document.createElement('div');
-        const productoDownDiv = document.createElement('div');
-        productoUpDiv.classList.add('producto');
-        productoDownDiv.classList.add('producto');
-        const img = document.createElement('img');
-        img.src = main_address+producto.image_url;
+    const productosUpContainer = document.getElementById(
+        "productos-superior-container"
+    );
+    const productosDownContainer = document.getElementById(
+        "productos-inferior-container"
+    );
+    productos.products.forEach((producto) => {
+        const productoUpDiv = document.createElement("div");
+        const productoDownDiv = document.createElement("div");
+        productoUpDiv.classList.add("producto");
+        productoDownDiv.classList.add("producto");
+        const img = document.createElement("img");
+        img.src = producto.image_url;
         img.alt = producto.name_product;
 
-        const infoDiv = document.createElement('div');
-        infoDiv.classList.add('producto-info');
+        const infoDiv = document.createElement("div");
+        infoDiv.classList.add("producto-info");
         infoDiv.innerHTML = `<h3>${producto.name_product}</h3>
                            <p>$${producto.price_product}</p>
                            <p>Stock: ${producto.stock}</p>`;
@@ -120,8 +120,7 @@ function displayProducts(productos) {
         if (producto.type_product === "up") {
             productoUpDiv.appendChild(img);
             productoUpDiv.appendChild(infoDiv);
-        }
-        else {
+        } else {
             productoDownDiv.appendChild(img);
             productoDownDiv.appendChild(infoDiv);
         }
@@ -132,9 +131,6 @@ function displayProducts(productos) {
 }
 
 // Asegúrate de llamar a esta función cuando quieras que los productos se muestren
-
-
-
 
 function sendData() {
     // Obtén los datos a enviar al backend
@@ -163,12 +159,10 @@ function sendData() {
             document.getElementById("segunda-pantalla").hidden = false;
             console.log(data);
             displayProducts(data);
-
         })
         .catch((error) => {
             console.error("Error:", error);
         });
-
 }
 
 const boton = document.getElementById("button-send-data");

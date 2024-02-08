@@ -30,10 +30,10 @@ def recibir_datos(request):
             data = [{
                 'id': product.id,
                 'name_product': product.name_product,
-                'price_product': str(product.price_product),
-                'type_product': str(product.type_product),
+                'price_product': f'product.price_product',
+                'type_product': f'product.type_product',
                 'stock': product.stock,
-                'image_url': product.image_product.url
+                'image_url': f'http://localhost:8000{product.image_product.url}'
             }for product in products]
 
             return JsonResponse({'products': data})
