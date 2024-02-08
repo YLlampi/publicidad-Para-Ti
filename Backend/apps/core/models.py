@@ -17,10 +17,17 @@ class Product(models.Model):
         ('neutral', 'Neutral')
     )
 
+    TYPE_PRODUCT_CHOICES = (
+        ('up', 'Up'),
+        ('down', 'Down'),
+    )
+
     name_product = models.CharField(max_length=255)
     image_product = models.ImageField(upload_to='product_images/')
     price_product = models.DecimalField(max_digits=10, decimal_places=2)
-    quantity_product = models.IntegerField()
+    stock = models.IntegerField()
+    type_product = models.CharField(
+        max_length=4, choices=TYPE_PRODUCT_CHOICES, default='up')
 
     gender_product = models.CharField(
         max_length=1, choices=GENDER_CHOICES, default='M')

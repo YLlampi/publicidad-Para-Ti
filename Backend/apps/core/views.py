@@ -28,13 +28,39 @@ def recibir_datos(request):
             products = products.filter(age_min__lte=age, age_max__gte=age)
             print(products)
             data = [{
+                'id': product.id,
                 'name_product': product.name_product,
                 'price_product': str(product.price_product),
-                'stock': product.quantity_product,
+                'type_product': str(product.type_product),
+                'stock': product.stock,
                 'image_url': product.image_product.url
             }for product in products]
 
             return JsonResponse({'products': data})
+        except (KeyError, json.JSONDecodeError):
+            return JsonResponse({'error': 'Los datos recibidos no son válidos.'}, status=400)
+    else:
+        return JsonResponse({'error': 'Método no permitido.'}, status=405)
+
+
+@csrf_exempt
+def get_product(request):
+    if request.method == 'POST':
+        try:
+            datos_recibidos = json.loads(request.body)
+
+            id_product = int(datos_recibidos['id'])
+            product = Product.objects.get(id=id_product)
+
+            data = {
+                'name_product': product.name_product,
+                'price_product': str(product.price_product),
+                'type_product': str(product.type_product),
+                'stock': product.stock,
+                'image_url': product.image_product.url
+            }
+
+            return JsonResponse({'product': data})
         except (KeyError, json.JSONDecodeError):
             return JsonResponse({'error': 'Los datos recibidos no son válidos.'}, status=400)
     else:
