@@ -52,8 +52,6 @@ video.addEventListener("play", () => {
                 age: parseInt(parseFloat(age)),
                 emotion: emotion,
             };
-            console.log(data);
-
             if (data && band === true) {
                 document.getElementById("check-person").hidden = false;
                 document.getElementById("loader-spin").hidden = true;
@@ -108,7 +106,7 @@ function get_product_detail(id) {
             document.getElementById("primera-pantalla").hidden = true;
             document.getElementById("segunda-pantalla").hidden = true;
             document.getElementById("tercera-pantalla").hidden = false;
-            console.log('product detail '+data.name_product);
+            console.log('product detail '+data);
             
         })
         .catch((error) => {
