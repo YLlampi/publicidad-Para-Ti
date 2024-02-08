@@ -79,32 +79,52 @@
             }
 
             .card-product-style {
-                display: flex;
-                justify-content: space-between;
-                align-items: center;
-                padding: 10px;
-            }
+				display: flex;
+				flex-direction: column;
+				align-items: center;
+				width: 100%; /* Asegúrate de que el contenedor tome el ancho completo */
+				margin-bottom: 20px;
+			}
+			.producto-row {
+				display: flex;
+				align-items: center;
+				justify-content: space-between;
+				width: 100%; /* Ajusta esto según el ancho deseado para la fila del producto */
+				margin: 10px 0;
+			}
+
+			.nav-button {
+				font-size: 24px;
+				cursor: pointer;
+				padding: 10px; /* Agrega algo de espacio alrededor del botón para facilitar la interacción */
+			}
 
             .producto {
-                border: 1px solid #000;
-                border-radius: 10px; /* Esquinas redondeadas */
-                padding: 10px;
-                width: 100px; /* Ancho del cuadro de la imagen */
-                height: 100px; /* Altura del cuadro de la imagen */
-                display: flex;
-                justify-content: center;
-                align-items: center;
-                margin: 5px;
-            }
+                flex-grow: 1; /* Permite que el producto crezca para llenar el espacio */
+				display: flex;
+				flex-direction: column;
+				align-items: center;
+				margin: 0 10px; /* Agrega un poco de margen a cada lado del producto */
 
-            .producto img {
-                max-width: 100%;
-                max-height: 100%;
             }
+			.producto-name {
+				font-weight: bold;
+				margin: 10px 0;
+			}
+            .producto img {
+				max-width: 80%; /* Ajusta el tamaño de la imagen */
+				border-radius: 15px; /* Esquinas redondeadas para la imagen */
+			}
 
             .producto-info {
-                text-align: center;
-            }
+				text-align: center;
+				margin-top: 10px;
+			}
+
+			#segunda-pantalla h2, #segunda-pantalla h3 {
+				text-align: center;
+				margin: 10px 0;
+			}
         </style>
     </head>
 
@@ -114,14 +134,16 @@
                 <div class="col-md-12 text-center mt-4">
                     <div class="phone-frame">
                         <div class="screen">
+							<div id="welcome-message" class="mt-5">
+								<h1>Publicidad Para Tí</h1>
+								<p>Bienvenido a tu experiencia de compra personalizada</p>
+							</div>
+							<div class="col-12" id="video-container" hidden>
+								<video id="video" width="270" height="210" autoplay muted></video>
+							</div>
                             <div id="primera-pantalla">
-                                <div id="welcome-message" class="mt-5">
-                                    <h1>Publicidad Para Tí</h1>
-                                    <p>Bienvenido a tu experiencia de compra personalizada</p>
-                                </div>
-                                <div class="col-12" id="video-container" hidden>
-                                    <video id="video" width="270" height="210" autoplay muted></video>
-                                </div>
+                                
+                                
                                 <div id="instruction-message" class="centered-message text-center col-12" hidden>
                                     <div class="text-center align-items-center">
                                         <div id="loader-spin" class="loader" hidden></div>
@@ -162,14 +184,14 @@
                             </div>
 
                             <div id="segunda-pantalla" hidden>
-                                SEGUNDA PANTALLA
+                                
                                 <div class="card-product-style" id="productos-superior-container">
-                                    PRODUCTOS SUPERIORES
+                                    
                                     <!-- Aquí se insertarán los productos -->
                                 </div>
 
                                 <div class="card-product-style" id="productos-inferior-container">
-                                    PRODUCTOS INFERIORES
+                                    
                                     <!-- Aquí se insertarán los productos -->
                                 </div>
                             </div>
