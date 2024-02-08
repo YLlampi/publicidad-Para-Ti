@@ -1,0 +1,112 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block style %}
+
+    <link href="{% static 'css/face-style.css' %}" rel="stylesheet">
+
+    <style>
+        .phone-frame {
+            width: 500px;
+            height: 90vh; /* Altura del 90% de la ventana */
+            border: 6px solid #000; /* Borde más grueso */
+            border-radius: 15px; /* Bordes redondeados */
+            margin: 20px auto; /* Margen arriba y abajo de 20px y centrado horizontalmente */
+            position: relative;
+            background-color: #ccc;
+            display: flex;
+            align-items: center; /* Centrar verticalmente */
+            justify-content: center; /* Centrar horizontalmente */
+        }
+
+        .screen {
+            width: calc(100% - 12px); /* Restar el grosor del borde */
+            height: calc(100% - 12px); /* Restar el grosor del borde */
+            background-color: #fff;
+            position: absolute;
+            top: 6px; /* Mover hacia abajo para compensar el grosor del borde */
+            left: 6px; /* Mover hacia la derecha para compensar el grosor del borde */
+            border-radius: 10px; /* Bordes redondeados */
+        {#display: flex;#}{#align-items: center; /* Centrar verticalmente */#}{#justify-content: center; /* Centrar horizontalmente */#}{#flex-direction: column; /* Apilar contenido verticalmente */#}{#text-align: center; /* Alinear texto al centro */#}{#padding: 20px; /* Añadir espacio alrededor del texto */#}
+        }
+
+        .centered-message {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        .loader {
+            border: 8px solid #f3f3f3; /* Light grey */
+            border-top: 8px solid #3498db; /* Blue */
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            animation: spin 2s linear infinite;
+        }
+
+        @keyframes spin {
+            0% {
+                transform: rotate(0deg);
+            }
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+    </style>
+{% endblock style %}
+
+{% block content %}
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 text-center mt-4">
+                <div class="phone-frame">
+                    <div class="screen">
+                        <!-- Contenido de la pantalla del celular -->
+
+
+                        <div id="welcome-message" class="mt-5">
+                            <h1>Publicidad Para Tí</h1>
+                            <p>Bienvenido a tu experiencia de compra personalizada</p>
+                        </div>
+
+                        <div class="col-10" id="video-container" hidden>
+                            <video id="video" width="360" height="280" autoplay muted></video>
+                        </div>
+                        <div id="instruction-message" class="centered-message" hidden>
+                            <!-- Segundo mensaje oculto al principio -->
+                            {#                            <h1>Segundo Mensaje</h1>#}
+                            <div id="loader-spin" class="loader" hidden></div> <!-- Animación de carga -->
+                            <p id="detected-message">Párate frente a la pantalla para comenzar</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock content %}
+
+
+{% block script %}
+
+    <script>
+        // Función para mostrar el segundo mensaje después de dos segundos
+
+        setTimeout(function () {
+            {#document.getElementById('welcome-message').hidden = true;#}
+            document.getElementById('instruction-message').hidden = false;
+        }, 1000);
+
+        setTimeout(function () {
+            document.getElementById('loader-spin').hidden = false;
+            document.getElementById('detected-message').innerText = "Escaneando Rostro...!";
+            document.getElementById('video-container').hidden = false;
+        }, 4000);
+    </script>
+
+{% endblock script %}

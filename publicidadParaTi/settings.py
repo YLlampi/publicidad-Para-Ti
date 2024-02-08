@@ -53,7 +53,7 @@ INSTALLED_APPS = [
 ]
 
 LOCAL_APPS = [
-    # 'apps.core.apps.CoreConfig'
+    'apps.core.apps.CoreConfig'
 ]
 
 THIRD_PARTY_APPS = [
@@ -128,7 +128,7 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/5.0/topics/i18n/
 
-LANGUAGE_CODE = 'es'
+LANGUAGE_CODE = 'es-pe'
 
 TIME_ZONE = 'America/Lima'
 
