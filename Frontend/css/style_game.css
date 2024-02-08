@@ -1,0 +1,166 @@
+#maze {
+    display: grid;
+    grid-template-columns: repeat(10, 50px);
+    grid-template-rows: repeat(10, 50px);
+}
+
+.cell {
+    width: 50px;
+    height: 50px;
+    border: 1px solid #000;
+    box-sizing: border-box;
+    background-color: aliceblue;
+}
+
+.shine{
+    border: #f00;
+    outline: 2px solid rgba(255, 255, 37, 0.662); /* Contorno blanco con opacidad */
+    box-shadow: 0 0 10px 5px rgba(255, 255, 255, 0.7);
+}
+
+.player {
+    width: 50px;
+    height: 50px;
+    /*background-color: rgba(231, 231, 231, 0.089);*/
+    background-image: url("../images/neutro.jpg");
+    background-size: contain;
+    border-radius: 1.5rem;
+}
+.player-happy {
+    background-image: url("../images/feliz.jpg");
+}
+
+.player-sad {
+    background-image: url("../images/triste.jpg");
+}
+
+.player-surprised {
+    background-image: url("../images/sorprendido.jpg");
+}
+
+.player-angry {
+    background-image: url("../images/enojado.jpg");
+}
+
+.help-happy{
+    background-image: url("../images/feliz_abajo");
+}
+.help-sad{
+    background-image: url("../images/triste_arriba");
+}
+.help-angry{
+    background-image: url("../images/enojado_izquierda");
+}
+.help-surprised{
+    background-image: url("../images/sosprendido_derecha");
+}
+
+
+.obstacle {
+    width: 50px;
+    height: 50px;
+    background-image: url("../images/muro.jpg"); /* Ruta de la imagen que quieres utilizar */
+    background-size: cover; /* Ajusta la imagen para cubrir todo el contenedor sin distorsionarla */
+    background-repeat: no-repeat;
+    /* Puedes dejar o modificar el color de fondo a tu elección */
+    background-color: #333;
+}
+
+.final {
+    width: 50px;
+    height: 50px;
+    background-image: url("../images/bandera-cuadros-carrera.jpg");
+    background-size: cover; /* Esta propiedad ajusta la imagen para cubrir todo el contenedor sin distorsionarla */
+    background-repeat: no-repeat;
+    /* background-color: #f00; */
+}
+.text {
+    display: flex;
+    height: 100%;
+    width: 55%;
+    align-items: center;
+    padding-left: 100px;
+}
+
+.text h1 {
+    margin-left: 10px;
+    font-size: 20px;
+
+}
+
+.leyenda {
+    display: flex;
+    width: 100%;
+    height: 215px;
+}
+.content {
+    display: flex;
+    width: 100%;
+    height: 215px;
+}
+.box {
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+    height: 100%;
+    justify-content: center;
+}
+.game {
+    height: 450px;
+}
+
+#overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 60%; /* Ocupa la mitad izquierda de la pantalla */
+    height: 100%;
+    background-color: rgba(255, 255, 255, 0.7); /* Fondo semitransparente */
+    z-index: 999; /* Colocar el cuadrado por encima de otros elementos */
+    backdrop-filter: blur(10px); /* Difuminar el fondo */
+  }
+  #foregroundSquare {
+    position: fixed;
+    top: 20%;
+    left: 5%;
+    width: 50%;
+    height: 50%;
+    background-color: #5ff0fa;
+    z-index: 1000;
+    padding: 30px;
+    border-radius: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    top: 50%; /* Ajusta según sea necesario para centrar verticalmente */
+    transform: translateY(-50%); /* Centra verticalmente el texto */
+    text-align: center;
+    font-size: 74px;
+    color: #000; /* Color del texto */
+    
+  }
+  
+  #startText {
+    position: absolute;
+    top: 50%; /* Ajusta según sea necesario para centrar verticalmente */
+    transform: translateY(-50%); /* Centra verticalmente el texto */
+    text-align: center;
+    font-size: 24px;
+    color: #000; /* Color del texto */
+  }
+
+  .boxMessage {
+    padding: 10px;
+    border-radius: 30px;
+    background-color: rgb(69, 226, 48);
+    color: black; /* Color de texto negro por defecto */
+    transition: background-color 0.5s, color 0.5s; /* Transiciones suaves para fondo y color de texto */
+  }
+
+  /* Estilo adicional para el texto peligro */
+  .boxMessage.danger {
+    background-color: red;
+    color: yellow;
+    border-radius: 30px;
+  }
