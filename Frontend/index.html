@@ -1,171 +1,152 @@
 <!DOCTYPE html>
 <html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+        <title>Publicidad para ti</title>
 
-<head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<meta http-equiv="X-UA-Compatible" content="ie=edge">
-	<title>Publicidad para ti</title>
+        <link href="./css/style.css" rel="stylesheet" />
+        <link
+            href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+            rel="stylesheet"
+            integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
+            crossorigin="anonymous" />
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
 
-	<link href="./css/style.css" rel="stylesheet">
-	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
-		integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
-	<link rel="stylesheet"
-		href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+        <style>
+            .phone-frame {
+                width: 500px;
+                height: 90vh; /* Altura del 90% de la ventana */
+                border: 6px solid #000; /* Borde más grueso */
+                border-radius: 15px; /* Bordes redondeados */
+                margin: 20px auto; /* Margen arriba y abajo de 20px y centrado horizontalmente */
+                position: relative;
+                background-color: #ccc;
+                display: flex;
+                align-items: center; /* Centrar verticalmente */
+                justify-content: center; /* Centrar horizontalmente */
+            }
 
-		<style>
-			.phone-frame {
-				width: 500px;
-				height: 90vh; /* Altura del 90% de la ventana */
-				border: 6px solid #000; /* Borde más grueso */
-				border-radius: 15px; /* Bordes redondeados */
-				margin: 20px auto; /* Margen arriba y abajo de 20px y centrado horizontalmente */
-				position: relative;
-				background-color: #ccc;
-				display: flex;
-				align-items: center; /* Centrar verticalmente */
-				justify-content: center; /* Centrar horizontalmente */
-			}
+            @keyframes wave-animation {
+                0% {
+                    background-position-x: 0;
+                }
+                100% {
+                    background-position-x: 1000px;
+                }
+            }
 
-			@keyframes wave-animation {
-				0% {
-					background-position-x: 0;
-				}
-				100% {
-					background-position-x: 1000px;
-				}
-			}
+            .screen {
+                width: calc(100% - 12px); /* Restar el grosor del borde */
+                height: calc(100% - 12px); /* Restar el grosor del borde */
+                background-color: #fff;
+                position: absolute;
+                top: 6px; /* Mover hacia abajo para compensar el grosor del borde */
+                left: 6px; /* Mover hacia la derecha para compensar el grosor del borde */
+                border-radius: 10px; /* Bordes redondeados */
 
-			.screen {
-				width: calc(100% - 12px); /* Restar el grosor del borde */
-				height: calc(100% - 12px); /* Restar el grosor del borde */
-				background-color: #fff;
-				position: absolute;
-				top: 6px; /* Mover hacia abajo para compensar el grosor del borde */
-				left: 6px; /* Mover hacia la derecha para compensar el grosor del borde */
-				border-radius: 10px; /* Bordes redondeados */
+                animation: wave-animation 30s linear infinite;
+                background-image: url("https://static.vecteezy.com/system/resources/previews/012/465/494/non_2x/soft-wave-background-with-ice-cream-color-and-simple-lines-suitable-for-banner-flyer-web-desktop-etc-vector.jpg"); /* Asegúrate de tener una imagen que se repita horizontalmente */
+                background-size: cover;
+                background-repeat: repeat-x;
+            }
 
-				animation: wave-animation 30s linear infinite;
-				background-image: url('https://static.vecteezy.com/system/resources/previews/012/465/494/non_2x/soft-wave-background-with-ice-cream-color-and-simple-lines-suitable-for-banner-flyer-web-desktop-etc-vector.jpg'); /* Asegúrate de tener una imagen que se repita horizontalmente */
-				background-size: cover;
-				background-repeat: repeat-x;
-			
-			}
-	
-			.centered-message {
-				position: absolute;
-				top: 50%;
-				left: 50%;
-				transform: translate(-50%, -50%);
-			}
-	
-			.loader {
-				border: 8px solid #f3f3f3; /* Light grey */
-				border-top: 8px solid #3498db; /* Blue */
-				border-radius: 50%;
-				width: 50px;
-				height: 50px;
-				animation: spin 2s linear infinite;
-			}
-	
-			@keyframes spin {
-				0% {
-					transform: rotate(0deg);
-				}
-				100% {
-					transform: rotate(360deg);
-				}
-			}
+            .centered-message {
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+            }
 
-			.card-product-style{
-				display: flex;
-				justify-content: space-between;
-				align-items: center;
-				padding: 10px;
-			}
+            .loader {
+                border: 8px solid #f3f3f3; /* Light grey */
+                border-top: 8px solid #3498db; /* Blue */
+                border-radius: 50%;
+                width: 50px;
+                height: 50px;
+                animation: spin 2s linear infinite;
+            }
 
+            @keyframes spin {
+                0% {
+                    transform: rotate(0deg);
+                }
+                100% {
+                    transform: rotate(360deg);
+                }
+            }
 
-			.producto {
-				border: 1px solid #000;
-				border-radius: 10px; /* Esquinas redondeadas */
-				padding: 10px;
-				width: 100px; /* Ancho del cuadro de la imagen */
-				height: 100px; /* Altura del cuadro de la imagen */
-				display: flex;
-				justify-content: center;
-				align-items: center;
-				margin: 5px;
-			}
+            .card-product-style {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                padding: 10px;
+            }
 
-			.producto img {
-				max-width: 100%;
-				max-height: 100%;
-				}
+            .producto {
+                border: 1px solid #000;
+                border-radius: 10px; /* Esquinas redondeadas */
+                padding: 10px;
+                width: 100px; /* Ancho del cuadro de la imagen */
+                height: 100px; /* Altura del cuadro de la imagen */
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                margin: 5px;
+            }
 
-			.producto-info {
-				text-align: center;
-				}
-	
-		</style>
+            .producto img {
+                max-width: 100%;
+                max-height: 100%;
+            }
 
-</head>
+            .producto-info {
+                text-align: center;
+            }
+        </style>
+    </head>
 
-<body>
-	<div class="container">
-		<div class="row">
-			<div class="col-md-12 text-center mt-4">
-				<div class="phone-frame">
-					<div class="screen">
-						<div id="primera-pantalla">
-							<div id="welcome-message" class="mt-5">
-								<h1>Publicidad Para Tí</h1>
-								<p>Bienvenido a tu experiencia de compra personalizada</p>
-							</div>
-							<div class="col-12" id="video-container" hidden>
-								<video id="video" width="270" height="210" autoplay muted></video>
-							</div>
-							<div id="instruction-message" class="centered-message text-center col-12" hidden>
-								<div class="text-center align-items-center">
-								<div id="loader-spin" class="loader" hidden></div>
-								</div>
-    							
+    <body>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 text-center mt-4">
+                    <div class="phone-frame">
+                        <div class="screen">
+                            <div id="primera-pantalla">
+                                <div id="welcome-message" class="mt-5">
+                                    <h1>Publicidad Para Tí</h1>
+                                    <p>Bienvenido a tu experiencia de compra personalizada</p>
+                                </div>
+                                <div class="col-12" id="video-container" hidden>
+                                    <video id="video" width="270" height="210" autoplay muted></video>
+                                </div>
+                                <div id="instruction-message" class="centered-message text-center col-12" hidden>
+                                    <div class="text-center align-items-center">
+                                        <div id="loader-spin" class="loader" hidden></div>
+                                    </div>
 
-								<div id="check-person" hidden>
-									<i class="fa-solid fa-user-check fa-2xl mb-2" style="color: #47b300;"></i>
-								</div>
+                                    <div id="check-person" hidden>
+                                        <i class="fa-solid fa-user-check fa-2xl mb-2" style="color: #47b300"></i>
+                                    </div>
 
-								<h3 id="detected-message">Párate frente a la pantalla para comenzar</h3>
-								<div id="information-person" class="col-12 mt-3" hidden>
-									<div class="row col-12">
-										<div class="col-4" >
-											<label for="age-id">Edad:</label>
-											<input id="age-id" class="input-group" type="number">
-										</div>
-										<div class="col-4">
-											<label for="gender-select">Género:</label>
-											<select id="gender-select" class="input-group">
-												<option value="masculino">Masculino</option>
-												<option value="femenino">Femenino</option>
-											</select>
-										</div>
-										
-										<div class="col-4">
-											<label for="emotion-info">Emoción:</label>
-											<input id="emotion-info" class="input-group" type="text" readonly>
-										</div>
-									</div>
-									<div>
-										<p>Modificar Valores si desea</p>
-									</div>
-									<div class="row m-3">
-										<button id="button-send-data" class="btn btn-success">Enviar Datos</button>
-									</div>
-								</div>
-	
-							</div>
-						</div>
+                                    <h3 id="detected-message">Párate frente a la pantalla para comenzar</h3>
+                                    <div id="information-person" class="col-12 mt-3" hidden>
+                                        <div class="row col-12">
+                                            <div class="col-4">
+                                                <label for="age-id">Edad:</label>
+                                                <input id="age-id" class="input-group" type="number" />
+                                            </div>
+                                            <div class="col-4">
+                                                <label for="gender-select">Género:</label>
+                                                <select id="gender-select" class="input-group">
+                                                    <option value="masculino">Masculino</option>
+                                                    <option value="femenino">Femenino</option>
+                                                </select>
+                                            </div>
 
+<<<<<<< HEAD
 						<div id="segunda-pantalla" hidden>
 							SEGUNDA PANTALLA
 							<div class="col-12" id="video-container-2" hidden>
@@ -190,31 +171,62 @@
 			</div>
 		</div>
 	</div>
+=======
+                                            <div class="col-4">
+                                                <label for="emotion-info">Emoción:</label>
+                                                <input id="emotion-info" class="input-group" type="text" readonly />
+                                            </div>
+                                        </div>
+                                        <div>
+                                            <p>Modificar Valores si desea</p>
+                                        </div>
+                                        <div class="row m-3">
+                                            <button id="button-send-data" class="btn btn-success">Enviar Datos</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+>>>>>>> 427246ee4972e9971cca9dceb535abd1b8a5cb29
 
+                            <div id="segunda-pantalla" hidden>
+                                SEGUNDA PANTALLA
+                                <div class="card-product-style" id="productos-superior-container">
+                                    PRODUCTOS SUPERIORES
+                                    <!-- Aquí se insertarán los productos -->
+                                </div>
 
-	<script defer src="./js/face-api.min.js"></script>
-	<script defer src="./js/script.js"></script>
+                                <div class="card-product-style" id="productos-inferior-container">
+                                    PRODUCTOS INFERIORES
+                                    <!-- Aquí se insertarán los productos -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
 
-	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
-		integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
-		crossorigin="anonymous"></script>
-	<script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+        <script defer src="./js/face-api.min.js"></script>
+        <script defer src="./js/script.js"></script>
 
-	<script>
-		// Función para mostrar el segundo mensaje después de dos segundos
+        <script
+            src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+            crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
 
-		setTimeout(function () {
-			document.getElementById('instruction-message').hidden = false;
-		}, 1000);
+        <script>
+            // Función para mostrar el segundo mensaje después de dos segundos
 
-		setTimeout(function () {
-			document.getElementById('loader-spin').hidden = false;
-			document.getElementById('detected-message').innerText = "Escaneando Rostro...!";
-			document.getElementById('video-container').hidden = false;
-		}, 4000);
-	</script>
+            setTimeout(function () {
+                document.getElementById("instruction-message").hidden = false;
+            }, 1000);
 
-
-</body>
-
+            setTimeout(function () {
+                document.getElementById("loader-spin").hidden = false;
+                document.getElementById("detected-message").innerText = "Escaneando Rostro...!";
+                document.getElementById("video-container").hidden = false;
+            }, 4000);
+        </script>
+    </body>
 </html>

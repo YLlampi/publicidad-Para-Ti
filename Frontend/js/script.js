@@ -34,10 +34,7 @@ video.addEventListener("play", () => {
             .withFaceExpressions()
             .withAgeAndGender();
 
-        const resizedDetections = faceapi.resizeResults(
-            detections,
-            displaySize
-        );
+        const resizedDetections = faceapi.resizeResults(detections, displaySize);
         canvas.getContext("2d").clearRect(0, 0, canvas.width, canvas.height);
 
         faceapi.draw.drawDetections(canvas, resizedDetections);
@@ -47,11 +44,7 @@ video.addEventListener("play", () => {
         detections.forEach(async (detection) => {
             const { age, gender } = detection;
             const expressions = detection.expressions;
-            const [emotion, maxScore] = Object.entries(expressions).reduce(
-                (acc, [emotion, score]) =>
-                    score > acc[1] ? [emotion, score] : acc,
-                ["", -1]
-            );
+            const [emotion, maxScore] = Object.entries(expressions).reduce((acc, [emotion, score]) => (score > acc[1] ? [emotion, score] : acc), ["", -1]);
 
             // Crear un objeto con los datos a enviar al backend
             const data = {
@@ -64,8 +57,7 @@ video.addEventListener("play", () => {
             if (data && band === true) {
                 document.getElementById("check-person").hidden = false;
                 document.getElementById("loader-spin").hidden = true;
-                document.getElementById("detected-message").innerText =
-                    "Rostro Detectado";
+                document.getElementById("detected-message").innerText = "Rostro Detectado";
                 band = false;
             }
 
@@ -99,12 +91,8 @@ function setInformation(data) {
 }
 
 function displayProducts(productos) {
-    const productosUpContainer = document.getElementById(
-        "productos-superior-container"
-    );
-    const productosDownContainer = document.getElementById(
-        "productos-inferior-container"
-    );
+    const productosUpContainer = document.getElementById("productos-superior-container");
+    const productosDownContainer = document.getElementById("productos-inferior-container");
     productos.products.forEach((producto) => {
         const productoUpDiv = document.createElement("div");
         const productoDownDiv = document.createElement("div");
