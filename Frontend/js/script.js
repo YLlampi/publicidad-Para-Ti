@@ -93,31 +93,53 @@ function setInformation(data) {
 function displayProducts(productos) {
     const productosUpContainer = document.getElementById("productos-superior-container");
     const productosDownContainer = document.getElementById("productos-inferior-container");
+    
     productos.products.forEach((producto) => {
-        const productoUpDiv = document.createElement("div");
-        const productoDownDiv = document.createElement("div");
-        productoUpDiv.classList.add("producto");
-        productoDownDiv.classList.add("producto");
+        // Contenedor para cada fila de producto
+        const productoRowDiv = document.createElement("div");
+        productoRowDiv.classList.add("producto-row");
+        
+        // Botón de navegación izquierda
+        const navButtonLeft = document.createElement("div");
+        navButtonLeft.classList.add("nav-button");
+        navButtonLeft.textContent = "◀";
+        
+        // Botón de navegación derecha
+        const navButtonRight = document.createElement("div");
+        navButtonRight.classList.add("nav-button");
+        navButtonRight.textContent = "▶";
+        
+        // Contenedor del producto
+        const productoDiv = document.createElement("div");
+        productoDiv.classList.add("producto");
+        
+        // Nombre del producto
+        const nameDiv = document.createElement("div");
+        nameDiv.classList.add("producto-name");
+        nameDiv.textContent = producto.name_product;
+        
+        // Imagen del producto
         const img = document.createElement("img");
         img.src = producto.image_url;
         img.alt = producto.name_product;
-
-        const infoDiv = document.createElement("div");
-        infoDiv.classList.add("producto-info");
-        infoDiv.innerHTML = `<h3>${producto.name_product}</h3>
-                           <p>$${producto.price_product}</p>
-                           <p>Stock: ${producto.stock}</p>`;
-
+        
+        
+        
+        // Agregamos los elementos al contenedor del producto
+        productoDiv.appendChild(nameDiv);
+        productoDiv.appendChild(img);
+        
+        // Agregamos los botones y el producto al contenedor de la fila
+        productoRowDiv.appendChild(navButtonLeft);
+        productoRowDiv.appendChild(productoDiv);
+        productoRowDiv.appendChild(navButtonRight);
+        
+        // Determinamos en qué contenedor debe ir el producto basado en su tipo
         if (producto.type_product === "up") {
-            productoUpDiv.appendChild(img);
-            productoUpDiv.appendChild(infoDiv);
-        } else {
-            productoDownDiv.appendChild(img);
-            productoDownDiv.appendChild(infoDiv);
+            productosUpContainer.appendChild(productoRowDiv);
+        } else if (producto.type_product === "down") {
+            productosDownContainer.appendChild(productoRowDiv);
         }
-
-        productosUpContainer.appendChild(productoUpDiv);
-        productosDownContainer.appendChild(productoDownDiv);
     });
 }
 
