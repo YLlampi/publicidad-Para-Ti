@@ -56,9 +56,10 @@ def get_product(request):
                 'id': product.id,
                 'name_product': product.name_product,
                 'price_product': f'{product.price_product}',
+                'size_product': f'{product.size_product}',
                 'type_product': f'{product.type_product}',
                 'rating': f'{product.rating}',
-                'dominant_color': f'{product.dominant_color}'
+                'dominant_color': f'{product.dominant_color}',
                 'stock': product.stock,
                 'image_url': f'http://localhost:8000{product.image_product.url}'
             }
