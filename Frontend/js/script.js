@@ -20,8 +20,6 @@ video.addEventListener("play", () => {
     const canvas = faceapi.createCanvasFromMedia(video);
     document.getElementById("video-container").append(canvas);
 
-
-
     const displaySize = { width: video.width, height: video.height };
     faceapi.matchDimensions(canvas, displaySize);
     let band = true;
@@ -106,8 +104,7 @@ function get_product_detail(id) {
             document.getElementById("primera-pantalla").hidden = true;
             document.getElementById("segunda-pantalla").hidden = true;
             document.getElementById("tercera-pantalla").hidden = false;
-            console.log('product detail '+data);
-            
+            console.log(data);
         })
         .catch((error) => {
             console.error("Error:", error);
@@ -146,7 +143,7 @@ function displayProducts(productos) {
         const img = document.createElement("img");
         img.src = producto.image_url;
         img.alt = producto.name_product;
-        img.onclick = function() {
+        img.onclick = function () {
             get_product_detail(producto.id);
         };
         // Agregamos los elementos al contenedor del producto
