@@ -154,8 +154,12 @@ function get_product_detail(id) {
 }
 
 function displayProducts(productos) {
-    const productosUpContainer = document.getElementById("productos-superior-container");
-    const productosDownContainer = document.getElementById("productos-inferior-container");
+    const productosUpCarousel = document.getElementById("productos-superior-container");
+    const productosDownCarousel = document.getElementById("productos-inferior-container");
+
+    // Clear the carousels before adding new products
+    productosUpCarousel.innerHTML = '';
+    productosDownCarousel.innerHTML = '';
 
     productos.products.forEach((producto) => {
         // Contenedor para cada fila de producto
@@ -199,9 +203,9 @@ function displayProducts(productos) {
 
         // Determinamos en qué contenedor debe ir el producto basado en su tipo
         if (producto.type_product === "up") {
-            productosUpContainer.appendChild(productoRowDiv);
+            productosUpCarousel.appendChild(productoRowDiv);
         } else if (producto.type_product === "down") {
-            productosDownContainer.appendChild(productoRowDiv);
+            productosDownCarousel.appendChild(productoRowDiv);
         }
     });
 }
@@ -248,12 +252,16 @@ const boton_get_detail_product = document.getElementById("button-send-data");
 boton_send_data.addEventListener("click", sendData);
 document.querySelectorAll('.nav-button.left').forEach(button => {
     button.addEventListener('click', () => {
-        button.nextElementSibling.scrollBy({ left: -270, behavior: 'smooth' }); // Asumiendo un ancho de 270px por producto
+        const carousel = button.nextElementSibling;
+        const scrollAmount = carousel.offsetWidth; // Or calculate based on the actual width of the product and margin
+        carousel.scrollBy({ left: -scrollAmount, behavior: 'smooth' });
     });
 });
 
 document.querySelectorAll('.nav-button.right').forEach(button => {
     button.addEventListener('click', () => {
-        button.previousElementSibling.scrollBy({ left: 270, behavior: 'smooth' });
+        const carousel = button.previousElementSibling;
+        const scrollAmount = carousel.offsetWidth; // Same as above
+        carousel.scrollBy({ left: scrollAmount, behavior: 'smooth' });
     });
 });

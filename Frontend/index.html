@@ -103,13 +103,22 @@
 		}
 		.products-carousel {
 			display: flex;
-			overflow-x: auto;
-			scroll-behavior: smooth;
-			padding: 10px;
-			gap: 10px; /* Espacio entre productos */
+			overflow-x: auto; /* Enable horizontal scrolling */
+			scroll-snap-type: x mandatory; /* Enables snap effect on scroll */
+			scroll-padding: 50%; /* Add padding to ensure centering */
+			justify-content: flex-start;
+			width: 100%; /* Full width of the container */
 		}
+
+
 		.producto-row {
-			display: flex;
+			
+			flex: 0 0 auto; /* Prevent the items from growing or shrinking */
+			width: 270px;
+			margin-right: 10px;
+			display: inline-block; 
+
+			/* display: flex; */
 			align-items: center;
 			justify-content: space-between;
 			width: 100%;
@@ -118,8 +127,12 @@
 		}
 
 		.nav-button {
+			
 			position: absolute;
 			top: 50%;
+			z-index: 2; /* Ensure buttons are above the products */
+			background-color: rgba(255,255,255,0.5);
+			
 			transform: translateY(-50%);
 			cursor: pointer;
 			font-size: 24px;
@@ -131,25 +144,30 @@
 		}
 
 		.nav-button.left {
-			left: 10px;
+			left: 0;
 		}
 
 		.nav-button.right {
-			right: 10px;
+			right: 0;
 		}
 
 		.producto {
 			flex: 0 0 auto; /* No crecer, no encoger, base auto */
-			width: 270px; /* Asumiendo que este es el ancho de la cámara */
+			scroll-snap-align: center;
+			margin-right: 20px;
+
+			min-width: 270px; /* Ensure each product maintains this width */
 			margin: 0 10px;
-			flex-grow: 1;
+			width: 270px; /* Asumiendo que este es el ancho de la cámara */
+			
+			
 			/* Permite que el producto crezca para llenar el espacio */
 			display: flex;
 			flex-direction: column;
 			align-items: center;
 			margin: 0 10px;
 			/* Agrega un poco de margen a cada lado del producto */
-			width: 270px;
+			
 			height: 210px;
 
 		}
@@ -297,18 +315,19 @@
 							<div class="card-product-style" id="productos-superior-container">
 								<div class="nav-button left">◀</div>
 								<div class="products-carousel" id="productos-superior-carousel">
-									<!-- Aquí se insertarán los productos superiores -->
+								  <!-- Upper product items will be inserted here -->
 								</div>
 								<div class="nav-button right">▶</div>
-							</div>
-						
-							<div class="card-product-style" id="productos-inferior-container">
+							  </div>
+							  
+							  <!-- For lower products -->
+							  <div class="card-product-style" id="productos-inferior-container">
 								<div class="nav-button left">◀</div>
 								<div class="products-carousel" id="productos-inferior-carousel">
-									<!-- Aquí se insertarán los productos inferiores -->
+								  <!-- Lower product items will be inserted here -->
 								</div>
 								<div class="nav-button right">▶</div>
-							</div>
+							  </div>
 						</div>
 
 						<div id="tercera-pantalla" hidden>
