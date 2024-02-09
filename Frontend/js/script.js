@@ -86,6 +86,46 @@ function setInformation(data) {
     }
     emotionInput.value = data.emotion;
 }
+
+
+function displayProductDetail(product) {
+    const productDetailContainer = document.getElementById("product-detail");
+
+    // Vacía el contenedor antes de agregar nuevos detalles del producto
+    productDetailContainer.innerHTML = '';
+
+    // Crea e inserta los elementos HTML en el contenedor de detalles del producto
+    const img = document.createElement('img');
+    img.src = product.image_url;
+    img.alt = product.name_product;
+
+    const name = document.createElement('div');
+    name.classList.add('product-name');
+    name.textContent = product.name_product;
+
+    const price = document.createElement('div');
+    price.classList.add('product-price');
+    price.textContent = `$${product.price_product}`;
+
+    const description = document.createElement('div');
+    description.classList.add('product-description');
+    description.textContent = "Lorem ipsum dolor sit amet consectetur adipiscing elit."; // Ejemplo de descripción
+
+    const addToCartButton = document.createElement('button');
+    addToCartButton.classList.add('add-to-cart-button');
+    addToCartButton.textContent = 'Add To Cart';
+
+    // Agrega los elementos al contenedor
+    productDetailContainer.appendChild(img);
+    productDetailContainer.appendChild(name);
+    productDetailContainer.appendChild(price);
+    productDetailContainer.appendChild(description);
+    productDetailContainer.appendChild(addToCartButton);
+
+}
+
+
+
 function get_product_detail(id) {
     fetch("http://localhost:8000/api/get-product/", {
         method: "POST",
@@ -103,8 +143,10 @@ function get_product_detail(id) {
         .then((data) => {
             document.getElementById("primera-pantalla").hidden = true;
             document.getElementById("segunda-pantalla").hidden = true;
+            document.getElementById('welcome-message').hidden = true;
+            document.getElementById('video-container').hidden = true;
             document.getElementById("tercera-pantalla").hidden = false;
-            console.log(data);
+            displayProductDetail(data.product)
         })
         .catch((error) => {
             console.error("Error:", error);
