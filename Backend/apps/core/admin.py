@@ -16,4 +16,4 @@ class ProductAdmin(admin.ModelAdmin):
     def image_tag(self, obj):
         return obj.image_product.url if obj.image_product else ''
 
-    image_tag.short_description = 'Image'
+    image_tag.short_description = 'Imagen URL'
