@@ -39,7 +39,7 @@ class Product(models.Model):
                                     max_length=4, choices=TYPE_PRODUCT_CHOICES, default='up')
     rating = models.IntegerField(
         'Calificación', choices=RATING_CHOICES, default='5')
-    dominant_color = models.CharField('Color', max_length=7, default="#000000")
+    dominant_color = models.CharField('Color', max_length=7, default="#ffffff")
 
     gender_product = models.CharField('Género',
                                       max_length=1, choices=GENDER_CHOICES, default='M')
