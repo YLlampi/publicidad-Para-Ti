@@ -246,3 +246,14 @@ boton_send_data.addEventListener("click", sendData);
 
 const boton_get_detail_product = document.getElementById("button-send-data");
 boton_send_data.addEventListener("click", sendData);
+document.querySelectorAll('.nav-button.left').forEach(button => {
+    button.addEventListener('click', () => {
+        button.nextElementSibling.scrollBy({ left: -270, behavior: 'smooth' }); // Asumiendo un ancho de 270px por producto
+    });
+});
+
+document.querySelectorAll('.nav-button.right').forEach(button => {
+    button.addEventListener('click', () => {
+        button.previousElementSibling.scrollBy({ left: 270, behavior: 'smooth' });
+    });
+});
