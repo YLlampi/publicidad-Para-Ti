@@ -30,16 +30,27 @@ class Product(models.Model):
         (5, '5')
     )
 
+    SIZE_CHOICES = (
+        ('S', 'Small'),
+        ('M', 'Medium'),
+        ('L', 'Large'),
+        ('XL', 'Extra Large'),
+    )
+
     name_product = models.CharField('Producto', max_length=255)
     image_product = models.ImageField('Imagen', upload_to='product_images/')
     price_product = models.DecimalField(
         'Precio', max_digits=10, decimal_places=2)
+    size_product = models.CharField(
+        'Tamaño', max_length=2, choices=SIZE_CHOICES, default='M')
+
     stock = models.IntegerField('Stock')
+
     type_product = models.CharField('Tipo',
                                     max_length=4, choices=TYPE_PRODUCT_CHOICES, default='up')
     rating = models.IntegerField(
         'Calificación', choices=RATING_CHOICES, default='5')
-    dominant_color = models.CharField('Color', max_length=7, default="#000000")
+    dominant_color = models.CharField('Color', max_length=7, default='#ffffff')
 
     gender_product = models.CharField('Género',
                                       max_length=1, choices=GENDER_CHOICES, default='M')
