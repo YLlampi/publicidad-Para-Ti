@@ -89,7 +89,7 @@ function setInformation(data) {
 
 function displayProductDetail(product) {
     const productDetailContainer = document.getElementById("product-detail");
-
+    console.log(product);
     // Vacía el contenedor antes de agregar nuevos detalles del producto
     productDetailContainer.innerHTML = "";
 
@@ -112,6 +112,7 @@ function displayProductDetail(product) {
 
     const addToCartButton = document.createElement("button");
     addToCartButton.classList.add("add-to-cart-button");
+    addToCartButton.style.backgroundColor =product.dominant_color;
     addToCartButton.textContent = "Add To Cart";
 
     // Agrega los elementos al contenedor
