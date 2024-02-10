@@ -23,7 +23,6 @@ video.addEventListener("play", () => {
 
     const displaySize = { width: video.width, height: video.height };
     faceapi.matchDimensions(canvas, displaySize);
-    
 
     setInterval(async () => {
         const detections = await faceapi
@@ -71,7 +70,8 @@ video.addEventListener("play", () => {
 
 function setInformation(data) {
     document.getElementById("check-person").hidden = true;
-    document.getElementById("detected-message").innerText = "Tus Datos:";
+    /* document.getElementById("detected-message").innerText = "Tus Datos:"; */
+    document.getElementById("detected-message").hidden = true;
 
     let ageInput = document.getElementById("age-id");
     let genderSelect = document.getElementById("gender-select");
@@ -87,33 +87,32 @@ function setInformation(data) {
     emotionInput.value = data.emotion;
 }
 
-
 function displayProductDetail(product) {
     const productDetailContainer = document.getElementById("product-detail");
 
     // Vacía el contenedor antes de agregar nuevos detalles del producto
-    productDetailContainer.innerHTML = '';
+    productDetailContainer.innerHTML = "";
 
     // Crea e inserta los elementos HTML en el contenedor de detalles del producto
-    const img = document.createElement('img');
+    const img = document.createElement("img");
     img.src = product.image_url;
     img.alt = product.name_product;
 
-    const name = document.createElement('div');
-    name.classList.add('product-name');
+    const name = document.createElement("div");
+    name.classList.add("product-name");
     name.textContent = product.name_product;
 
-    const price = document.createElement('div');
-    price.classList.add('product-price');
+    const price = document.createElement("div");
+    price.classList.add("product-price");
     price.textContent = `$${product.price_product}`;
 
-    const description = document.createElement('div');
-    description.classList.add('product-description');
+    const description = document.createElement("div");
+    description.classList.add("product-description");
     description.textContent = "Lorem ipsum dolor sit amet consectetur adipiscing elit."; // Ejemplo de descripción
 
-    const addToCartButton = document.createElement('button');
-    addToCartButton.classList.add('add-to-cart-button');
-    addToCartButton.textContent = 'Add To Cart';
+    const addToCartButton = document.createElement("button");
+    addToCartButton.classList.add("add-to-cart-button");
+    addToCartButton.textContent = "Add To Cart";
 
     // Agrega los elementos al contenedor
     productDetailContainer.appendChild(img);
@@ -121,10 +120,7 @@ function displayProductDetail(product) {
     productDetailContainer.appendChild(price);
     productDetailContainer.appendChild(description);
     productDetailContainer.appendChild(addToCartButton);
-
 }
-
-
 
 function get_product_detail(id) {
     fetch("http://localhost:8000/api/get-product/", {
@@ -143,10 +139,10 @@ function get_product_detail(id) {
         .then((data) => {
             document.getElementById("primera-pantalla").hidden = true;
             document.getElementById("segunda-pantalla").hidden = true;
-            document.getElementById('welcome-message').hidden = true;
-            document.getElementById('video-container').hidden = true;
+            document.getElementById("welcome-message").hidden = true;
+            document.getElementById("video-container").hidden = true;
             document.getElementById("tercera-pantalla").hidden = false;
-            displayProductDetail(data.product)
+            displayProductDetail(data.product);
         })
         .catch((error) => {
             console.error("Error:", error);
@@ -158,8 +154,8 @@ function displayProducts(productos) {
     const productosDownCarousel = document.getElementById("productos-inferior-container");
 
     // Clear the carousels before adding new products
-    productosUpCarousel.innerHTML = '';
-    productosDownCarousel.innerHTML = '';
+    productosUpCarousel.innerHTML = "";
+    productosDownCarousel.innerHTML = "";
 
     productos.products.forEach((producto) => {
         // Contenedor para cada fila de producto
@@ -214,28 +210,27 @@ function displayProducts(productos) {
 function backSecondScreen() {
     document.getElementById("primera-pantalla").hidden = false;
     document.getElementById("segunda-pantalla").hidden = true;
-    document.getElementById('welcome-message').hidden = false;
-    document.getElementById('video-container').hidden = false;
+    document.getElementById("welcome-message").hidden = false;
+    document.getElementById("video-container").hidden = false;
     document.getElementById("tercera-pantalla").hidden = true;
     document.getElementById("information-person").hidden = true;
     document.getElementById("loader-spin").hidden = false;
     document.getElementById("detected-message").innerText = "Detectando Rostro...";
     band = true;
     band_2 = true;
-   
 }
 
 function backThirdScreen() {
     document.getElementById("primera-pantalla").hidden = true;
     document.getElementById("segunda-pantalla").hidden = false;
-    document.getElementById('welcome-message').hidden = false;
-    document.getElementById('video-container').hidden = false;
+    document.getElementById("welcome-message").hidden = false;
+    document.getElementById("video-container").hidden = false;
     document.getElementById("tercera-pantalla").hidden = true;
     document.getElementById("information-person").hidden = true;
     document.getElementById("loader-spin").hidden = false;
     document.getElementById("detected-message").innerText = "Detectando Rostro...";
     document.getElementById("age-id").value = "";
-    document.getElementById
+    document.getElementById;
 }
 
 function sendData() {
@@ -276,25 +271,23 @@ boton_send_data.addEventListener("click", sendData);
 
 const boton_get_detail_product = document.getElementById("button-send-data");
 boton_send_data.addEventListener("click", sendData);
-document.querySelectorAll('.nav-button.left').forEach(button => {
-    button.addEventListener('click', () => {
+document.querySelectorAll(".nav-button.left").forEach((button) => {
+    button.addEventListener("click", () => {
         const carousel = button.nextElementSibling;
         const scrollAmount = carousel.offsetWidth; // Or calculate based on the actual width of the product and margin
-        carousel.scrollBy({ left: -scrollAmount, behavior: 'smooth' });
+        carousel.scrollBy({ left: -scrollAmount, behavior: "smooth" });
     });
 });
 
-document.querySelectorAll('.nav-button.right').forEach(button => {
-    button.addEventListener('click', () => {
+document.querySelectorAll(".nav-button.right").forEach((button) => {
+    button.addEventListener("click", () => {
         const carousel = button.previousElementSibling;
         const scrollAmount = carousel.offsetWidth; // Same as above
-        carousel.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+        carousel.scrollBy({ left: scrollAmount, behavior: "smooth" });
     });
 });
-
 
 const boton_back_segunda_pantalla = document.getElementById("back-segunda-pantalla");
 boton_back_segunda_pantalla.addEventListener("click", backSecondScreen);
 const boton_back_tercera_pantalla = document.getElementById("back-tercera-pantalla");
 boton_back_tercera_pantalla.addEventListener("click", backThirdScreen);
-
