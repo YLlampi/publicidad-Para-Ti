@@ -15,15 +15,15 @@ function startVideo() {
         (err) => console.error(err)
     );
 }
-
+var band = true;
+var band_2 = true;
 video.addEventListener("play", () => {
     const canvas = faceapi.createCanvasFromMedia(video);
     document.getElementById("video-container").append(canvas);
 
     const displaySize = { width: video.width, height: video.height };
     faceapi.matchDimensions(canvas, displaySize);
-    let band = true;
-    let band_2 = true;
+    
 
     setInterval(async () => {
         const detections = await faceapi
@@ -211,6 +211,32 @@ function displayProducts(productos) {
 }
 
 // Asegúrate de llamar a esta función cuando quieras que los productos se muestren
+function backSecondScreen() {
+    document.getElementById("primera-pantalla").hidden = false;
+    document.getElementById("segunda-pantalla").hidden = true;
+    document.getElementById('welcome-message').hidden = false;
+    document.getElementById('video-container').hidden = false;
+    document.getElementById("tercera-pantalla").hidden = true;
+    document.getElementById("information-person").hidden = true;
+    document.getElementById("loader-spin").hidden = false;
+    document.getElementById("detected-message").innerText = "Detectando Rostro...";
+    band = true;
+    band_2 = true;
+   
+}
+
+function backThirdScreen() {
+    document.getElementById("primera-pantalla").hidden = true;
+    document.getElementById("segunda-pantalla").hidden = false;
+    document.getElementById('welcome-message').hidden = false;
+    document.getElementById('video-container').hidden = false;
+    document.getElementById("tercera-pantalla").hidden = true;
+    document.getElementById("information-person").hidden = true;
+    document.getElementById("loader-spin").hidden = false;
+    document.getElementById("detected-message").innerText = "Detectando Rostro...";
+    document.getElementById("age-id").value = "";
+    document.getElementById
+}
 
 function sendData() {
     // Obtén los datos a enviar al backend
@@ -265,3 +291,10 @@ document.querySelectorAll('.nav-button.right').forEach(button => {
         carousel.scrollBy({ left: scrollAmount, behavior: 'smooth' });
     });
 });
+
+
+const boton_back_segunda_pantalla = document.getElementById("back-segunda-pantalla");
+boton_back_segunda_pantalla.addEventListener("click", backSecondScreen);
+const boton_back_tercera_pantalla = document.getElementById("back-tercera-pantalla");
+boton_back_tercera_pantalla.addEventListener("click", backThirdScreen);
+
