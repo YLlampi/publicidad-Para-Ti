@@ -101,22 +101,26 @@
 			/* Asegúrate de que el contenedor tome el ancho completo */
 			margin-bottom: 20px;
 		}
+
 		.products-carousel {
 			display: flex;
-			overflow-x: auto; /* Enable horizontal scrolling */
-			scroll-snap-type: x mandatory; /* Enables snap effect on scroll */
-			scroll-padding: 50%; /* Add padding to ensure centering */
+			overflow-x: auto;
+			/* Enable horizontal scrolling */
+			scroll-snap-type: x mandatory;
+			/* Enables snap effect on scroll */
+			scroll-padding: 50%;
+			/* Add padding to ensure centering */
 			justify-content: flex-start;
-			width: 100%; /* Full width of the container */
+			width: 100%;
+			/* Full width of the container */
 		}
 
-
 		.producto-row {
-			
-			flex: 0 0 auto; /* Prevent the items from growing or shrinking */
+			flex: 0 0 auto;
+			/* Prevent the items from growing or shrinking */
 			width: 270px;
 			margin-right: 10px;
-			display: inline-block; 
+			display: inline-block;
 
 			/* display: flex; */
 			align-items: center;
@@ -127,12 +131,12 @@
 		}
 
 		.nav-button {
-			
 			position: absolute;
 			top: 50%;
-			z-index: 2; /* Ensure buttons are above the products */
-			background-color: rgba(255,255,255,0.5);
-			
+			z-index: 2;
+			/* Ensure buttons are above the products */
+			background-color: rgba(255, 255, 255, 0.5);
+
 			transform: translateY(-50%);
 			cursor: pointer;
 			font-size: 24px;
@@ -152,24 +156,25 @@
 		}
 
 		.producto {
-			flex: 0 0 auto; /* No crecer, no encoger, base auto */
+			flex: 0 0 auto;
+			/* No crecer, no encoger, base auto */
 			scroll-snap-align: center;
 			margin-right: 20px;
 
-			min-width: 270px; /* Ensure each product maintains this width */
+			min-width: 270px;
+			/* Ensure each product maintains this width */
 			margin: 0 10px;
-			width: 270px; /* Asumiendo que este es el ancho de la cámara */
-			
-			
+			width: 270px;
+			/* Asumiendo que este es el ancho de la cámara */
+
 			/* Permite que el producto crezca para llenar el espacio */
 			display: flex;
 			flex-direction: column;
 			align-items: center;
 			margin: 0 10px;
 			/* Agrega un poco de margen a cada lado del producto */
-			
-			height: 210px;
 
+			height: 210px;
 		}
 
 		.producto-name {
@@ -195,7 +200,6 @@
 			text-align: center;
 			margin: 10px 0;
 		}
-
 
 		#tercera-pantalla {
 			display: flex;
@@ -270,8 +274,6 @@
 							<video id="video" width="270" height="210" autoplay muted></video>
 						</div>
 						<div id="primera-pantalla">
-
-
 							<div id="instruction-message" class="centered-message text-center col-12" hidden>
 								<div class="text-center align-items-center">
 									<div id="loader-spin" class="loader" hidden></div>
@@ -315,38 +317,34 @@
 							<div class="card-product-style" id="productos-superior-container">
 								<div class="nav-button left">◀</div>
 								<div class="products-carousel" id="productos-superior-carousel">
-								  <!-- Upper product items will be inserted here -->
+									<!-- Upper product items will be inserted here -->
 								</div>
 								<div class="nav-button right">▶</div>
-							  </div>
-							  
-							  <!-- For lower products -->
-							  <div class="card-product-style" id="productos-inferior-container">
+							</div>
+
+							<!-- For lower products -->
+							<div class="card-product-style" id="productos-inferior-container">
 								<div class="nav-button left">◀</div>
 								<div class="products-carousel" id="productos-inferior-carousel">
-								  <!-- Lower product items will be inserted here -->
+									<!-- Lower product items will be inserted here -->
 								</div>
 								<div class="nav-button right">▶</div>
-							  </div>
-							  <button id="back-segunda-pantalla">retroceder</button>
+							</div>
+							<button id ="back-segunda-pantalla">Retroceder</button>
 						</div>
 
 						<div id="tercera-pantalla" hidden>
-
-							<div class="product-detail-class" id="product-detail">
-
-
-
-							</div>
-
-							
-							<button id="back-tercera-pantalla">retroceder</button>
+							<div class="product-detail-class" id="product-detail"></div>
+							<button id ="back-tercera-pantalla">Retroceder</button>
 						</div>
 					</div>
 				</div>
 			</div>
 		</div>
 	</div>
+
+
+
 
 	<script defer src="./js/face-api.min.js"></script>
 	<script defer src="./js/script.js"></script>
