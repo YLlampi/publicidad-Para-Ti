@@ -105,6 +105,7 @@ function displayProductDetail(product) {
     const price = document.createElement("div");
     price.classList.add("product-price");
     price.textContent = `$${product.price_product}`;
+    price.style.color = product.dominant_color;
 
     const description = document.createElement("div");
     description.classList.add("product-description");
